@@ -3,6 +3,7 @@ import { Users } from "../../dummyData"
 import Online from "../online/Online"
 
 export default function Rightbar({profile}) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const HomeRightbar = () => {
     return (
@@ -44,15 +45,15 @@ export default function Rightbar({profile}) {
       <h4 className="rightBarTitle">User Friends</h4>
       <div className="rightbarFollowings">
         <div className="rightbarFollowing">
-          <img src="assets/person/dogA.png" alt="" className="rightbarFollowingImg" />
+          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
           <span className="rightbarFollowingName">John Carter</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/dogA.png" alt="" className="rightbarFollowingImg" />
+          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
           <span className="rightbarFollowingName">John Carter</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/dogA.png" alt="" className="rightbarFollowingImg" />
+          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
           <span className="rightbarFollowingName">John Carter</span>
         </div>
       </div>
