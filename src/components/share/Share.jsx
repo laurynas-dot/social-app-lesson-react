@@ -18,8 +18,23 @@ export default function Share() {
       desc: desc.current.value
     };
 
+    if (file) {
+      const data = new FormData();
+      const fileName = crypto.randomUUID() + file.name;
+      console.log(fileName);
+      newPost.img = fileName;
+      data.append("name", fileName);
+      data.append("file", file);
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     try {
       await axios.post("/posts", newPost);
+      window.location.reload();
     } catch (err) {
 
     }

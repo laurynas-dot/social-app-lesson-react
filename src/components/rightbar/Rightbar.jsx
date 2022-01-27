@@ -1,9 +1,27 @@
 import "./rightbar.css"
 import { Users } from "../../dummyData"
 import Online from "../online/Online"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Rightbar({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [friends, setFriends] = useState([]);
+
+  useEffect(() => {
+    const getFriends = async () => {
+      if (user._id === undefined)
+        return;
+
+      try {
+        const friendList = await axios.get("/users/friends/" + user._id);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [user._id]);
 
   const HomeRightbar = () => {
     return (
@@ -44,18 +62,16 @@ export default function Rightbar({user}) {
       </div>
       <h4 className="rightBarTitle">User Friends</h4>
       <div className="rightbarFollowings">
-        <div className="rightbarFollowing">
-          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src={`${PF}person/dogA.png`} alt="" className="rightbarFollowingImg" />
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
+        {friends.map(friend => (
+          <div className="rightbarFollowing">
+            <img 
+              src={PF + friend.profilePicture || "person/noAvatar.png"} 
+              alt="" 
+              className="rightbarFollowingImg" 
+            />
+            <span className="rightbarFollowingName">{friend.username}</span>
+          </div>
+        ))}
       </div>
     </>);
   }
