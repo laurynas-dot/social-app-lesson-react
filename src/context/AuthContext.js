@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import AuthReducer from "./AuthReducer";
 
-const INITIAL_STATE = {
+let INITIAL_STATE = {
   user: {
     _id: "61e7b60973f8f5a01fac586c",
     username:"Santa",
@@ -23,6 +23,7 @@ const INITIAL_STATE = {
   isFetching: false,
   error: false,
 };
+ INITIAL_STATE = {};
 
 export const AuthContext = createContext(INITIAL_STATE);
 

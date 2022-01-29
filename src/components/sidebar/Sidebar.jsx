@@ -2,8 +2,16 @@ import "./sidebar.css"
 import { RssFeed, School, Event, WorkOutline, HelpOutline, Bookmark, Group, PlayCircleFilledOutlined, Chat, EmojiObjectsTwoTone } from "@material-ui/icons"
 import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriends/CloseFriend";
+import {useNavigate} from "react-router-dom";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleChatClick = () => {
+    console.log("chat clicked");
+    navigate("/messenger");
+  }
+
   return (
   <div className="sidebar">
     <div className="sidebarWrapper">
@@ -13,7 +21,7 @@ export default function Sidebar() {
           <span className="sidebarListItemText">Feed</span>
         </li>
         <li className="sidebarListItem">
-          <Chat className="sidebarIcon"/>
+          <Chat className="sidebarIcon" onClick={handleChatClick}/>
           <span className="sidebarListItemText">Chats</span>
         </li>
         <li className="sidebarListItem">
