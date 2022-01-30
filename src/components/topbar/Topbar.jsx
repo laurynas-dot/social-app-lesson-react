@@ -1,10 +1,17 @@
 import "./topbar.css";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { useContext } from "react";
 import {AuthContext} from "../../context/AuthContext"
 
 export default function Topbar() {
+
+  const navigate = useNavigate();
+
+  const handleChatClick = () => {
+    console.log("chat clicked");
+    navigate("/messenger");
+  }
 
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -33,7 +40,7 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
           <div className="topbarIconItem">
-            <Chat/>
+            <Chat onClick={handleChatClick}/>
             <span className="topbarIconBadge">2</span>
           </div>
           <div className="topbarIconItem">

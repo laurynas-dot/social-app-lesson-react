@@ -29,6 +29,10 @@ export default function Register() {
     }
   };
 
+  const handleLoginClick = () => {
+    navigate("/login");
+  }
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -44,10 +48,10 @@ export default function Register() {
             <input type="Email" type="email" required ref={email} className="loginInput" placeholder="Email" />
             <input type="Password" type="password" minLength="6" required ref={password} className="loginInput" placeholder="Password" />
             <input type="Repeat Password" type="password" required ref={passwordAgain} className="loginInput" placeholder="Repeat Password" />
-            <button className="loginButton" type="submit" >Sign up</button>
-            <button className="loginRegisterButton">
+            <button className="loginRegisterButton" type="submit" >Sign up</button>
+            <button className="loginButton" onClick={handleLoginClick}>
               Log into Account
-              </button>
+            </button>
           </form>
         </div>
       </div>
